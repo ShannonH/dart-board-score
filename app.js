@@ -431,10 +431,13 @@ function handleX01Throw(score) {
     }
 }
 
+function isCricketNumber(number) {
+    return CRICKET_NUMBERS.includes(number);
+}
+
 function handleCricketThrow(number, multiplier) {
     // Only count cricket numbers
-    if (number !== 15 && number !== 16 && number !== 17 && 
-        number !== 18 && number !== 19 && number !== 20 && number !== 25) {
+    if (!isCricketNumber(number)) {
         return;
     }
 
@@ -547,8 +550,7 @@ function recalculateScores() {
                         player.score = newScore;
                     }
                 } else {
-                    if (number === 15 || number === 16 || number === 17 || 
-                        number === 18 || number === 19 || number === 20 || number === 25) {
+                    if (isCricketNumber(number)) {
                         player.marks[number] += multiplier;
                     }
                 }
@@ -578,8 +580,7 @@ function recalculateScores() {
                 player.score = newScore;
             }
         } else {
-            if (number === 15 || number === 16 || number === 17 || 
-                number === 18 || number === 19 || number === 20 || number === 25) {
+            if (isCricketNumber(number)) {
                 player.marks[number] += multiplier;
             }
         }

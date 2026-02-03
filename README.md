@@ -23,7 +23,9 @@ A web-based dart scoring application for iPad Safari that supports Cricket and x
 
 ## Live Demo
 
-Visit: [https://shannonh.github.io/dart-board-score/](https://shannonh.github.io/dart-board-score/)
+Visit: [https://[username].github.io/dart-board-score/](https://[username].github.io/dart-board-score/)
+
+Replace `[username]` with the repository owner's GitHub username.
 
 ## Usage
 
