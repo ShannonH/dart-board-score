@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Dart Score Keeper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Game Setup Screen -->
+        <div id="setupScreen" class="screen active">
+            <h1>Dart Score Keeper</h1>
+            <div class="setup-container">
+                <div class="setup-section">
+                    <h2>Select Game Type</h2>
+                    <div class="game-type-buttons">
+                        <button class="game-type-btn active" data-game="x01">x01</button>
+                        <button class="game-type-btn" data-game="cricket">Cricket</button>
+                    </div>
+                </div>
+
+                <div class="setup-section" id="x01Options">
+                    <h3>Starting Score</h3>
+                    <div class="x01-buttons">
+                        <button class="x01-btn active" data-score="301">301</button>
+                        <button class="x01-btn" data-score="501">501</button>
+                        <button class="x01-btn" data-score="701">701</button>
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <h3>Number of Players</h3>
+                    <div class="player-count-buttons">
+                        <button class="player-count-btn" data-count="1">1</button>
+                        <button class="player-count-btn active" data-count="2">2</button>
+                        <button class="player-count-btn" data-count="3">3</button>
+                        <button class="player-count-btn" data-count="4">4</button>
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <h3>Player Names</h3>
+                    <div id="playerNames">
+                        <input type="text" class="player-name-input" placeholder="Player 1" data-player="0" value="Player 1">
+                        <input type="text" class="player-name-input" placeholder="Player 2" data-player="1" value="Player 2">
+                    </div>
+                </div>
+
+                <button id="startGameBtn" class="primary-btn">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <button id="backToSetup" class="header-btn">← Setup</button>
+                <h2 id="gameTitle">Cricket</h2>
+                <button id="toggleInputMode" class="header-btn">Switch Input</button>
+            </div>
+
+            <!-- Scoreboard -->
+            <div id="scoreboard"></div>
+
+            <!-- Input Mode Toggle -->
+            <div class="input-container">
+                <!-- Dartboard Input -->
+                <div id="dartboardInput" class="input-mode active">
+                    <svg id="dartboard" viewBox="-110 -110 220 220" width="100%" height="100%">
+                        <!-- Dartboard will be rendered by JavaScript -->
+                    </svg>
+                    <div class="multiplier-selector">
+                        <button class="multiplier-btn active" data-mult="1">Single</button>
+                        <button class="multiplier-btn" data-mult="2">Double</button>
+                        <button class="multiplier-btn" data-mult="3">Triple</button>
+                    </div>
+                </div>
+
+                <!-- Button Input -->
+                <div id="buttonInput" class="input-mode">
+                    <div class="button-grid">
+                        <!-- Number buttons will be rendered by JavaScript -->
+                    </div>
+                    <div class="score-controls">
+                        <button class="control-btn" id="undoBtn">Undo</button>
+                        <button class="control-btn" id="nextPlayerBtn">Next Player</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Turn Info -->
+            <div id="turnInfo">
+                <div id="currentThrow">Dart 1 of 3</div>
+                <div id="turnScore">Turn: 0</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
