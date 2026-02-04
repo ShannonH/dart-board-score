@@ -59,13 +59,13 @@ body {
     color: #2a5298;
 }
 
-.game-type-buttons, .x01-buttons, .player-count-buttons {
+.game-type-buttons, .x01-buttons, .player-count-buttons, .auto-switch-buttons {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
 }
 
-.game-type-btn, .x01-btn, .player-count-btn {
+.game-type-btn, .x01-btn, .player-count-btn, .auto-switch-btn {
     flex: 1;
     min-width: 120px;
     padding: 15px 25px;
@@ -78,14 +78,21 @@ body {
     font-weight: 600;
 }
 
-.game-type-btn:hover, .x01-btn:hover, .player-count-btn:hover {
+.game-type-btn:hover, .x01-btn:hover, .player-count-btn:hover, .auto-switch-btn:hover {
     background: #f0f0f0;
 }
 
-.game-type-btn.active, .x01-btn.active, .player-count-btn.active {
+.game-type-btn.active, .x01-btn.active, .player-count-btn.active, .auto-switch-btn.active {
     background: #1e3c72;
     color: white;
     border-color: #1e3c72;
+}
+
+.help-text {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
 }
 
 #playerNames {
