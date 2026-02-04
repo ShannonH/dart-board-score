@@ -9,7 +9,8 @@ const state = {
     turnScores: [],
     inputMode: 'dartboard', // 'dartboard' or 'button'
     multiplier: 1,
-    history: []
+    history: [],
+    autoSwitch: false // Default to manual switching
 };
 
 // Dartboard configuration
@@ -57,6 +58,15 @@ function initSetup() {
             btn.classList.add('active');
             state.playerCount = parseInt(btn.dataset.count);
             updatePlayerNameInputs();
+        });
+    });
+
+    // Auto-switch selection
+    document.querySelectorAll('.auto-switch-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.auto-switch-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.autoSwitch = btn.dataset.auto === 'true';
         });
     });
 
@@ -212,14 +222,14 @@ function renderCricketScoreboard(container) {
             const marks = player.marks[num];
             let display = '';
             if (marks >= 3) {
-                display = '<span class="cricket-closed">X</span>';
+                display = '<span class="cricket-closed">⊗</span>'; // Circled X for closed
                 if (marks > 3) {
                     display += ` +${marks - 3}`;
                 }
             } else if (marks === 2) {
-                display = '/';
+                display = '⨯'; // Full X (both legs)
             } else if (marks === 1) {
-                display = '|';
+                display = '╱'; // First leg of X
             }
             html += `<td class="cricket-mark">${display}</td>`;
         });
@@ -251,10 +261,10 @@ function renderDartboard() {
         const startAngle = (index * anglePerSegment - 9) * Math.PI / 180;
         const endAngle = ((index + 1) * anglePerSegment - 9) * Math.PI / 180;
         
-        // Colors alternate
+        // Colors alternate - realistic dartboard colors (red/green for scoring, black/white for singles)
         const isRed = (index % 2 === 0);
-        const outerColor = isRed ? '#dc143c' : '#000';
-        const innerColor = isRed ? '#dc143c' : '#e8e8e8';
+        const outerColor = isRed ? '#dc143c' : '#00aa00'; // Red or Green for double/triple
+        const innerColor = isRed ? '#000' : '#f5f5dc'; // Black or Cream/White for singles
 
         // Double ring (outer)
         createSegment(svg, startAngle, endAngle, 92, 100, outerColor, number, 2);
@@ -288,10 +298,10 @@ function renderDartboard() {
         svg.appendChild(text);
     });
 
-    // Bull's eye
+    // Bull's eye - outer bull (green) and inner bull (red)
     const bull = createSVGElement('circle', {
         cx: 0, cy: 0, r: 17,
-        fill: '#00ff00',
+        fill: '#00aa00',
         stroke: '#fff',
         'stroke-width': 1,
         class: 'dart-segment',
@@ -405,7 +415,7 @@ function recordThrow(number, multiplier) {
 
     state.currentDart++;
     
-    if (state.currentDart >= 3) {
+    if (state.currentDart >= 3 && state.autoSwitch) {
         nextPlayer();
     } else {
         updateTurnInfo();
