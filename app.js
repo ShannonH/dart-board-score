@@ -163,11 +163,13 @@ function initGame() {
         });
     });
 
-    // Undo button
+    // Undo buttons (both views)
     document.getElementById('undoBtn').addEventListener('click', undoLastThrow);
+    document.getElementById('undoBtnDartboard').addEventListener('click', undoLastThrow);
 
-    // Next player button
+    // Next player buttons (both views)
     document.getElementById('nextPlayerBtn').addEventListener('click', nextPlayer);
+    document.getElementById('nextPlayerBtnDartboard').addEventListener('click', nextPlayer);
 }
 
 function updateGameTitle() {
